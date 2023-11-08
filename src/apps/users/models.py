@@ -4,11 +4,13 @@ from django.db import models
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from phonenumber_field.modelfields import PhoneNumberField
 
 class UsersModel(AbstractUser):
   username = models.CharField(max_length = 50, blank = True, null = True, unique = True)
   email = models.EmailField(unique=True)
   name = models.CharField(max_length = 50)
+  phone_number = PhoneNumberField(blank=True)
   
   
   USERNAME_FIELD = 'email'
