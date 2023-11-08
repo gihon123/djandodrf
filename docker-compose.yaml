@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: "django-blog-container"
+    build: .
+    working_dir: /app/src
+
+    command: python manage.py runserver --settings=core.settings.docker --host=0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    networks:
+      - django-blog
+networks:
+    django-blog:
+        driver: bridge
+volumes:
+  data:
